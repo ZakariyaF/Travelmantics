@@ -1,17 +1,16 @@
 package com.zakariyaf.travelmantics;
 
-public class TravelDeals {
+public class TravelDeal {
     private String id;
     private String title;
     private String description;
     private String price;
     private String imageUrl;
 
-    public TravelDeals(String id, String title, String description, String price, String imageUrl) {
-        this.setId(id);
+    public TravelDeal(String title, String price, String description, String imageUrl) {
         this.setTitle(title);
-        this.setDescription(description);
         this.setPrice(price);
+        this.setDescription(description);
         this.setImageUrl(imageUrl);
     }
 
