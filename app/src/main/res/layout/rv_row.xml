@@ -12,6 +12,7 @@
         android:layout_marginStart="@dimen/txt_margin_standard"
         android:layout_marginLeft="@dimen/txt_margin_standard"
         android:layout_marginTop="@dimen/txt_margin_standard"
+        android:src="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
