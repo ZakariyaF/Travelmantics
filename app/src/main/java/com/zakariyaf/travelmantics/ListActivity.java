@@ -17,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import static androidx.recyclerview.widget.LinearLayoutManager.*;
+
 public class ListActivity extends AppCompatActivity {
 
     private ArrayList<TravelDeal> mTravelDeals;

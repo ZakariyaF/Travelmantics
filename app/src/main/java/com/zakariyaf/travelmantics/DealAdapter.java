@@ -36,7 +36,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 TravelDeal travelDeal = dataSnapshot.getValue(TravelDeal.class);
-                Log.e("Deal: ", travelDeal.getTitle());
+                Log.e("Deal: ", travelDeal.getTitle() + " " + travelDeal.getPrice());
                 travelDeal.setId(dataSnapshot.getKey());
                 mTravelDeals.add(travelDeal);
                 notifyItemInserted(mTravelDeals.size() - 1);
