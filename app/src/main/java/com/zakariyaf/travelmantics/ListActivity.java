@@ -19,10 +19,6 @@ import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
 
-    private ArrayList<TravelDeal> mTravelDeals;
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mDatabaseReference;
-    private ChildEventListener mChildListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,4 +50,5 @@ public class ListActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
