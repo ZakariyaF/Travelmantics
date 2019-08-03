@@ -11,6 +11,6 @@
         android:id="@+id/delete_menu"
         android:title="@string/delete_menu"
         app:showAsAction="never">
-        
+
     </item>
 </menu>
