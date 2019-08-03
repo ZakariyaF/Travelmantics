@@ -98,4 +98,9 @@ public class DealActivity extends AppCompatActivity {
         }
         mDatabaseReference.child(mTravelDeal.getId()).removeValue();
     }
+
+    private void backToList() {
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
+    }
 }
