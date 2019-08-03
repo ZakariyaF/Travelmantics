@@ -89,4 +89,13 @@ public class DealActivity extends AppCompatActivity {
         }
 
     }
+
+    private void deleteDeal() {
+        if (mTravelDeal == null) {
+            Toast.makeText
+                    (this, "Please save the deal before deleting", Toast.LENGTH_LONG).show();
+            return;
+        }
+        mDatabaseReference.child(mTravelDeal.getId()).removeValue();
+    }
 }
