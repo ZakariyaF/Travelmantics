@@ -79,11 +79,14 @@ public class DealActivity extends AppCompatActivity {
     }
 
     private void saveDeal() {
-        String title = txtTitle.getText().toString();
-        String price = txtPrice.getText().toString();
-        String description = txtDescription.getText().toString();
+        mTravelDeal.setTitle(txtTitle.getText().toString());
+        mTravelDeal.setPrice(txtPrice.getText().toString());
+        mTravelDeal.setDescription(txtDescription.getText().toString());
+        if (mTravelDeal.getId() == null) {
+            mDatabaseReference.push().setValue(mTravelDeal);
+        } else {
+            mDatabaseReference.child(mTravelDeal.getId()).setValue(mTravelDeal);
+        }
 
-        TravelDeal travelDeal = new TravelDeal(title, price, description, "");
-        mDatabaseReference.push().setValue(travelDeal);
     }
 }
