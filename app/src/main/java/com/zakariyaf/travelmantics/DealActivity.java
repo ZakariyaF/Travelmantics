@@ -3,6 +3,7 @@ package com.zakariyaf.travelmantics;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,9 +19,12 @@ public class DealActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
 
+    private TravelDeal mTravelDeal;
+
     EditText txtTitle;
     EditText txtPrice;
     EditText txtDescription;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,16 @@ public class DealActivity extends AppCompatActivity {
         txtTitle = findViewById(R.id.txtTitle);
         txtPrice = findViewById(R.id.txtPrice);
         txtDescription = findViewById(R.id.txtDescription);
+
+        Intent intent = getIntent();
+        TravelDeal travelDeal = (TravelDeal) intent.getSerializableExtra("Deal");
+        if (travelDeal == null) {
+            travelDeal = new TravelDeal();
+        }
+        mTravelDeal = travelDeal;
+        txtTitle.setText(mTravelDeal.getTitle());
+        txtPrice.setText(mTravelDeal.getPrice());
+        txtDescription.setText(mTravelDeal.getDescription());
     }
 
     @Override
