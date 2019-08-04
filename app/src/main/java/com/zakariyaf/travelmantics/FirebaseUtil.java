@@ -66,6 +66,7 @@ public class FirebaseUtil {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 FirebaseUtil.sIsAdmin = true;
+                mCallerActivity.showMenu();
             }
 
             @Override
