@@ -25,6 +25,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        FirebaseUtil.openFirebaseReference("traveldeals", this);
         RecyclerView rvDeals = findViewById(R.id.rvDeals);
         final DealAdapter dealAdapter = new DealAdapter();
         rvDeals.setAdapter(dealAdapter);

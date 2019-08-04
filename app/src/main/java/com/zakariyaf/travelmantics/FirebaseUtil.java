@@ -25,12 +25,12 @@ public class FirebaseUtil {
     private static FirebaseUtil sFirebaseUtil;
 
     private static final int RC_SIGN_IN = 123;
-    private static Activity mCallerActivity;
+    private static ListActivity mCallerActivity;
 
     private FirebaseUtil() {
     }
 
-    public static void openFirebaseReference(String ref, final Activity callerActivity) {
+    public static void openFirebaseReference(String ref, final ListActivity callerActivity) {
         if (sFirebaseUtil == null) {
             sFirebaseUtil = new FirebaseUtil();
             sFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -50,7 +50,6 @@ public class FirebaseUtil {
     }
 
     private static void signIn() {
-        Activity callerActivity = ;
         // Choose authentication providers
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),

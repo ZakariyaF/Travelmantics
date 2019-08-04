@@ -31,7 +31,6 @@ public class DealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert);
 
-        FirebaseUtil.openFirebaseReference("traveldeals");
         mFirebaseDatabase = FirebaseUtil.sFirebaseDatabase;
         mDatabaseReference = FirebaseUtil.sDatabaseReference;
 
