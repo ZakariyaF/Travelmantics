@@ -56,6 +56,7 @@ public class ListActivity extends AppCompatActivity {
                                                 "Logout successful",
                                                 Toast.LENGTH_LONG)
                                         .show();
+                                FirebaseUtil.attachListener();
                             }
                         });
                 FirebaseUtil.detachListener();
