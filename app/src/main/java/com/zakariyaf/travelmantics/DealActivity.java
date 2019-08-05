@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ public class DealActivity extends AppCompatActivity {
     EditText txtTitle;
     EditText txtPrice;
     EditText txtDescription;
+    private static final int PICTURE_RESULT = 42;
 
 
     @Override
@@ -47,6 +50,19 @@ public class DealActivity extends AppCompatActivity {
         txtTitle.setText(mTravelDeal.getTitle());
         txtPrice.setText(mTravelDeal.getPrice());
         txtDescription.setText(mTravelDeal.getDescription());
+
+        Button btnImage = findViewById(R.id.btnImage);
+        btnImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/jpeg");
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                startActivityForResult(intent.createChooser(intent,
+                        "Insert picture:"), PICTURE_RESULT);
+
+            }
+        });
     }
 
     @Override
