@@ -28,8 +28,6 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
-
     }
 
     @Override
@@ -90,7 +88,6 @@ public class ListActivity extends AppCompatActivity {
         LinearLayoutManager dealsLayoutManager = new LinearLayoutManager
                 (this, RecyclerView.VERTICAL, false);
         rvDeals.setLayoutManager(dealsLayoutManager);
-
         FirebaseUtil.attachListener();
     }
 
