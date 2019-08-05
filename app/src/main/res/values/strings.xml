@@ -7,4 +7,5 @@
     <string name="insert_menu">New travel deal</string>
     <string name="delete_menu">Delete</string>
     <string name="logout_menu">Logout</string>
+    <string name="upload_button_text">Upload image</string>
 </resources>
