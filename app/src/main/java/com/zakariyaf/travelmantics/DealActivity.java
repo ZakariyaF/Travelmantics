@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class DealActivity extends AppCompatActivity {
 
@@ -33,6 +36,8 @@ public class DealActivity extends AppCompatActivity {
     EditText txtTitle;
     EditText txtPrice;
     EditText txtDescription;
+    ImageView imageView;
+
     private static final int PICTURE_RESULT = 42;
 
 
@@ -47,6 +52,7 @@ public class DealActivity extends AppCompatActivity {
         txtTitle = findViewById(R.id.txtTitle);
         txtPrice = findViewById(R.id.txtPrice);
         txtDescription = findViewById(R.id.txtDescription);
+        imageView = findViewById(R.id.image);
 
         Intent intent = getIntent();
         TravelDeal travelDeal = (TravelDeal) intent.getSerializableExtra("Deal");
@@ -57,6 +63,8 @@ public class DealActivity extends AppCompatActivity {
         txtTitle.setText(mTravelDeal.getTitle());
         txtPrice.setText(mTravelDeal.getPrice());
         txtDescription.setText(mTravelDeal.getDescription());
+
+        showImage(mTravelDeal.getImageUrl());
 
         Button btnImage = findViewById(R.id.btnImage);
         btnImage.setOnClickListener(new View.OnClickListener() {
@@ -160,11 +168,24 @@ public class DealActivity extends AppCompatActivity {
                     taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
-                            mTravelDeal.setImageUrl(task.getResult().toString());
+                            String url = task.getResult().toString();
+                            mTravelDeal.setImageUrl(url);
+                            showImage(url);
                         }
                     });
                 }
             });
+        }
+    }
+
+    private void showImage(String url) {
+        if (url != null && !url.isEmpty()) {
+            int width = Resources.getSystem().getDisplayMetrics().widthPixels;
+            Picasso.get()
+                    .load(url)
+                    .resize(width, width * 2 / 3)
+                    .centerCrop()
+                    .into(imageView);
         }
     }
 }
