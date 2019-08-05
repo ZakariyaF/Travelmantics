@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -143,6 +144,20 @@ public class DealActivity extends AppCompatActivity {
             return;
         }
         mDatabaseReference.child(mTravelDeal.getId()).removeValue();
+        if (mTravelDeal.getImageName() != null && !mTravelDeal.getImageName().isEmpty()) {
+            StorageReference picRef = FirebaseUtil.sStorage.getReference().child(mTravelDeal.getImageName());
+            picRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(DealActivity.this, "Image deleted...", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(DealActivity.this, "Error occurred...", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void backToList() {
@@ -164,12 +179,14 @@ public class DealActivity extends AppCompatActivity {
             final StorageReference ref = FirebaseUtil.sStorageRef.child(imageUri.getLastPathSegment());
             ref.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
+
                     taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
                             String url = task.getResult().toString();
                             mTravelDeal.setImageUrl(url);
+                            mTravelDeal.setImageName(taskSnapshot.getStorage().getPath());
                             showImage(url);
                         }
                     });
