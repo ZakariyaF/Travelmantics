@@ -29,7 +29,7 @@ public class DealActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_insert);
+        setContentView(R.layout.activity_deal);
 
         mFirebaseDatabase = FirebaseUtil.sFirebaseDatabase;
         mDatabaseReference = FirebaseUtil.sDatabaseReference;
