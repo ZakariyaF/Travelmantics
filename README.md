@@ -12,7 +12,7 @@ _Note: In order for the project to build and run properly, please add your own g
   }
 }
 ```
-![Example screenshot](./app/firebase_sc.png)
+![Example screenshot](./img/firebase_sc.png)
 ## Firebase Storage rules:
 ```
 rules_version = '2';
